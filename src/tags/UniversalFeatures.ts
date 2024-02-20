@@ -1,4 +1,4 @@
-const UniversalFeatures_DESCRIPTION_ES = {
+export const UniversalFeatures_DESCRIPTION_ES = {
   Animacy: {
     Anim: "Animado: Seres vivos con movimiento propio.",
     Hum: "Humano: Relativo a los humanos.",
@@ -139,7 +139,7 @@ const UniversalFeatures_DESCRIPTION_ES = {
   },
 };
 
-const UniversalFeatures_DESCRIPTION_DE = {
+export const UniversalFeatures_DESCRIPTION_DE = {
   Animacy: {
     Anim: "Belebt: Lebewesen mit Eigendynamik.",
     Hum: "Mensch: Bezieht sich auf Menschen.",
@@ -280,7 +280,7 @@ const UniversalFeatures_DESCRIPTION_DE = {
   },
 };
 
-const UniversalFeatures_DESCRIPTION_EN = {
+export const UniversalFeatures_DESCRIPTION_EN = {
   Animacy: {
     Anim: "Animate: Living beings with self-dynamics.",
     Hum: "Human: Refers to humans.",
@@ -421,8 +421,7 @@ const UniversalFeatures_DESCRIPTION_EN = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _available = {
+export const _available = {
   UniversalFeatures_DESCRIPTION_ES,
   UniversalFeatures_DESCRIPTION_DE,
   UniversalFeatures_DESCRIPTION_EN,

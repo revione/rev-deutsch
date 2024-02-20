@@ -1,4 +1,4 @@
-const TAGS_PT_ES = {
+export const TAGS_PT_ES = {
   CC: "Conjunción coordinada",
   CD: "Número cardinal",
   DT: "Determinante",
@@ -37,7 +37,7 @@ const TAGS_PT_ES = {
   WRB: "Wh-adverbio",
 };
 
-const TAGS_PT_DE = {
+export const TAGS_PT_DE = {
   CC: "Koordinierende Konjunktion",
   CD: "Kardinalzahl",
   DT: "Determinierer",
@@ -76,7 +76,7 @@ const TAGS_PT_DE = {
   WRB: "Wh-Adverb",
 };
 
-const TAGS_PT_EN = {
+export const TAGS_PT_EN = {
   CC: "Coordinating conjunction",
   CD: "Cardinal number",
   DT: "Determiner",
@@ -115,7 +115,7 @@ const TAGS_PT_EN = {
   WRB: "Wh-adverb",
 };
 
-const TAGS_PT_DESCRIPTION_ES = {
+export const TAGS_PT_DESCRIPTION_ES = {
   CC: "Conjunción de coordinación: conecta palabras o grupos de palabras de manera similar, expresando relación de coordinación.",
   CD: "Número cardinal: representa números que indican cantidad o posición en una secuencia.",
   DT: "Determinante: introduce un sustantivo y especifica o cuantifica su alcance.",
@@ -154,7 +154,7 @@ const TAGS_PT_DESCRIPTION_ES = {
   WRB: "Adverbio interrogativo: introduce preguntas y modifica un verbo, un adjetivo o un adverbio.",
 };
 
-const TAGS_ES = {
+export const TAGS_ES = {
   ADJA: "Adjetivo atributivo",
   ADJD: "Adjetivo predicativo",
   ADV: "Adverbio",
@@ -210,7 +210,7 @@ const TAGS_ES = {
   "$.": "Puntuación que termina la oración",
 };
 
-const TAGS_DE = {
+export const TAGS_DE = {
   ADJA: "Attributives Adjektiv",
   ADJD: "Prädikatives Adjektiv",
   ADV: "Adverb",
@@ -266,7 +266,7 @@ const TAGS_DE = {
   "$.": "Satzbeendende Interpunktion",
 };
 
-const TAGS_EN = {
+export const TAGS_EN = {
   ADJA: "Attributive adjective",
   ADJD: "Predicative adjective",
   ADV: "Adverb",
@@ -322,7 +322,7 @@ const TAGS_EN = {
   "$.": "Sentence-ending punctuation",
 };
 
-const TAGS_DESCRIPTION_ES = {
+export const TAGS_DESCRIPTION_ES = {
   ADJA: "Adjetivo atributivo: se utiliza para marcar adjetivos que modifican a un sustantivo de manera atributiva, es decir, directamente vinculados al sustantivo y cumpliendo la función de describir sus características.",
   ADJD: "Adjetivo predicativo: se aplica a adjetivos que funcionan de manera predicativa, es decir, describiendo las características de un sustantivo de manera más amplia en relación con el contexto de la oración.",
   ADV: "Adverbio: se utiliza para marcar palabras que modifican o describen un verbo, un adjetivo u otro adverbio, proporcionando información adicional sobre la manera, el lugar, el tiempo, la frecuencia, entre otros.",
@@ -404,8 +404,7 @@ const TAGS_DESCRIPTION_ES = {
   "$.": "Puntuación que termina la oración: se aplica a signos de puntuación, como puntos finales, que indican el final de una oración.",
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _availables = {
+export const _availables = {
   TAGS_PT_ES,
   TAGS_PT_DE,
   TAGS_PT_EN,

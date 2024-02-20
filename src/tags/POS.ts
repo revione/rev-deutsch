@@ -1,4 +1,4 @@
-const POS_ES = {
+export const POS_ES = {
   ADJ: "adjetivo",
   ADP: "adposición",
   ADV: "adverbio",
@@ -18,7 +18,7 @@ const POS_ES = {
   X: "otro",
 };
 
-const POS_DE = {
+export const POS_DE = {
   ADJ: "Adjektiv",
   ADP: "Präposition",
   ADV: "Adverb",
@@ -38,7 +38,7 @@ const POS_DE = {
   X: "andere",
 };
 
-const POS_EN = {
+export const POS_EN = {
   ADJ: "adjective",
   ADP: "adposition",
   ADV: "adverb",
@@ -58,7 +58,7 @@ const POS_EN = {
   X: "other",
 };
 
-const POS_DESCRIPTION_ES = {
+export const POS_DESCRIPTION_ES = {
   ADJ: "adjetivo : Describen características o cualidades de un sustantivo.",
   ADP: "adposición : Introducen elementos relacionales, como preposiciones y postposiciones.",
   ADV: "adverbio : Modifican verbos, adjetivos u otros adverbios para indicar circunstancias o detalles.",
@@ -82,7 +82,7 @@ const POS_DESCRIPTION_ES = {
   X: "otro : Categoría para palabras o elementos que no encajan en ninguna otra categoría gramatical.",
 };
 
-const POS_DESCRIPTION_DE = {
+export const POS_DESCRIPTION_DE = {
   ADJ: "Adjektiv : Beschreiben Merkmale oder Eigenschaften eines Substantivs.",
   ADP: "Präposition : Einführung relationaler Elemente wie Präpositionen und Postpositionen.",
   ADV: "Adverb : Modifizieren Verben, Adjektive oder andere Adverbien, um Umstände oder Details anzuzeigen.",
@@ -106,7 +106,7 @@ const POS_DESCRIPTION_DE = {
   X: "andere : Kategorie für Wörter oder Elemente, die in keine andere grammatikalische Kategorie passen.",
 };
 
-const POS_DESCRIPTION_EN = {
+export const POS_DESCRIPTION_EN = {
   ADJ: "Adjective : Describe characteristics or qualities of a noun.",
   ADP: "Adposition : Introduce relational elements, such as prepositions and postpositions.",
   ADV: "Adverb : Modify verbs, adjectives, or other adverbs to indicate circumstances or details.",
@@ -130,8 +130,7 @@ const POS_DESCRIPTION_EN = {
   X: "Other : Category for words or elements that do not fit into any other grammatical category.",
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _available = {
+export const _available = {
   POS_ES,
   POS_DE,
   POS_EN,
