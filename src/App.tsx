@@ -1,28 +1,26 @@
 import { useState } from "react";
-import nlp from "de-compromise";
 
 const GrammaticalAnalysis = () => {
   const [germanPhrase, setGermanPhrase] = useState(
-    "Diese Mädchen gehen noch in den Kindergarden."
+    "Diese Mädchen gehen noch in den Kindergarten."
   );
+  const [result, setResult] = useState("");
 
   const analyzeGrammar = () => {
-    const dok = nlp(germanPhrase);
+    const socket = new WebSocket("ws://localhost:8765");
 
-    const document = dok.json();
-    const verbs = dok.verbs();
-
-    console.log({ document, verbs });
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const termsInfo = document[0].terms.map((term: any) => {
-      return {
-        text: term.text,
-        tags: term.tags.join(", "),
-      };
+    socket.addEventListener("open", () => {
+      const message = { mensaje: germanPhrase };
+      socket.send(JSON.stringify(message));
     });
 
-    console.log("Estructura gramatical:", termsInfo);
+    socket.addEventListener("message", (event) => {
+      const response = JSON.parse(event.data);
+      const tokensInfo = response.tokens;
+      console.log(tokensInfo);
+      setResult(JSON.stringify(tokensInfo, null, 2));
+      // socket.close();
+    });
   };
 
   return (
@@ -33,6 +31,9 @@ const GrammaticalAnalysis = () => {
           onChange={(e) => setGermanPhrase(e.target.value)}
         />
         <button onClick={analyzeGrammar}>Analizar Gramática</button>
+        <div>
+          <pre>{result}</pre>
+        </div>
       </div>
     </div>
   );
