@@ -1,5 +1,6 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useMemo } from "react";
 import NiceInfo from "./NiceInfo";
+import LoadingSvg from "./Loading";
 
 const GrammaticalAnalysis = () => {
   const [language, setLanguage] = useState<"es" | "de" | "en">("es");
@@ -14,20 +15,38 @@ const GrammaticalAnalysis = () => {
     null
   );
 
-  const analyzeGrammar = () => {
+  const [serverStatus, setServerStatus] = useState<
+    "connecting" | "connected" | "disconnected"
+  >("connecting");
+
+  const socket = useMemo(() => {
     const socket = new WebSocket(import.meta.env.VITE_WS_URL);
+    setServerStatus("connecting");
 
     socket.addEventListener("open", () => {
-      const message = { mensaje: germanPhrase };
-      socket.send(JSON.stringify(message));
+      setServerStatus("connected");
     });
 
     socket.addEventListener("message", (event) => {
       const response = JSON.parse(event.data);
       const tokensInfo: TokenInfo[] = response.tokens;
       setResult(tokensInfo);
-      socket.close();
     });
+
+    socket.addEventListener("close", () => {
+      setServerStatus("disconnected");
+    });
+
+    socket.addEventListener("error", () => {
+      setServerStatus("disconnected");
+    });
+
+    return socket;
+  }, []);
+
+  const analyzeGrammar = () => {
+    const message = { mensaje: germanPhrase };
+    socket.send(JSON.stringify(message));
   };
 
   const handleWordHover = (wordInfo: TokenInfo) => {
@@ -52,7 +71,12 @@ const GrammaticalAnalysis = () => {
   return (
     <div className="container m-auto">
       <div className="flex flex-col w-full">
-        <div className="flex gap-2 justify-center mb-2">
+        <div className="flex gap-2 justify-center items-center mb-2">
+          <div className="mr-3 cursor-default">
+            {serverStatus === "connecting" ? <LoadingSvg /> : ""}
+            {serverStatus === "connected" ? "✅" : ""}
+            {serverStatus === "disconnected" ? "❌" : ""}
+          </div>
           {["es", "de", "en"].map((lan) => (
             <button
               key={lan}
@@ -69,7 +93,14 @@ const GrammaticalAnalysis = () => {
             onChange={handleInputChange}
             className="p-2 rounded-md"
           />
-          <button onClick={analyzeGrammar}>Analizar Gramática</button>
+          <button
+            className="flex justify-center gap-4 disabled:opacity-30 disabled:outline-none disabled:border-none"
+            onClick={analyzeGrammar}
+            disabled={serverStatus !== "connected"}
+          >
+            {serverStatus === "connecting" ? <LoadingSvg /> : ""}
+            Analizar Gramática
+          </button>
           <div>
             <NiceInfo
               {...{ WordInfo: clickedWordInfo || hoveredWordInfo, language }}
