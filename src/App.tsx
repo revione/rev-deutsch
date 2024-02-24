@@ -74,8 +74,8 @@ const GrammaticalAnalysis = () => {
         <div className="flex gap-2 justify-center items-center mb-2">
           <div className="mr-3 cursor-default">
             {serverStatus === "connecting" ? <LoadingSvg /> : ""}
-            {serverStatus === "connected" ? "✅" : ""}
-            {serverStatus === "disconnected" ? "❌" : ""}
+            {/* {serverStatus === "connected" ? "✅" : ""}
+            {serverStatus === "disconnected" ? "❌" : ""} */}
           </div>
           {["es", "de", "en"].map((lan) => (
             <button
@@ -110,21 +110,32 @@ const GrammaticalAnalysis = () => {
         <div>
           {result && (
             <div>
-              {result.map((wordInfo, index) => (
-                <span
-                  key={index}
-                  onMouseEnter={() => handleWordHover(wordInfo)}
-                  onMouseLeave={handleWordLeave}
-                  onClick={() => handleWordClick(wordInfo)}
-                  className={`relative cursor-pointer ${
-                    hoveredWordInfo?.text === wordInfo.text ? "underline" : ""
-                  } ${
-                    clickedWordInfo?.text === wordInfo.text ? "underline" : ""
-                  }`}
-                >
-                  {wordInfo.text}{" "}
-                  <div
-                    className={`w-full h-[2px] absolute flex bottom-0 left-0
+              {result.map((wordInfo, index) =>
+                wordInfo.pos === "SPACE" ? (
+                  <div key={index}>
+                    {typeof wordInfo.text === "string" &&
+                      Array.from(
+                        {
+                          length: wordInfo.text.replace(/\n/g, "n").length - 1,
+                        },
+                        () => "space"
+                      ).map((space, i) => <br key={`${i}_${space}`} />)}
+                  </div>
+                ) : (
+                  <span
+                    key={index}
+                    onMouseEnter={() => handleWordHover(wordInfo)}
+                    onMouseLeave={handleWordLeave}
+                    onClick={() => handleWordClick(wordInfo)}
+                    className={`relative cursor-pointer ${
+                      hoveredWordInfo?.text === wordInfo.text ? "underline" : ""
+                    } ${
+                      clickedWordInfo?.text === wordInfo.text ? "underline" : ""
+                    }`}
+                  >
+                    {wordInfo.text}{" "}
+                    <div
+                      className={`w-full h-[2px] absolute flex bottom-0 left-0
                       ${
                         (wordInfo.morph["Case"] as string | undefined) &&
                         (wordInfo.morph["Case"] as string).length > 0 &&
@@ -137,9 +148,10 @@ const GrammaticalAnalysis = () => {
                           : "")
                       }
                     `}
-                  />
-                </span>
-              ))}
+                    />
+                  </span>
+                )
+              )}
             </div>
           )}
         </div>
