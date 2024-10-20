@@ -136,18 +136,20 @@ const GrammaticalAnalysis = () => {
                     {wordInfo.text}{" "}
                     <div
                       className={`w-full h-[2px] absolute flex bottom-0 left-0
-                      ${
-                        (wordInfo.morph["Case"] as string | undefined) &&
-                        (wordInfo.morph["Case"] as string).length > 0 &&
-                        (wordInfo.morph["Case"] === "Nom"
-                          ? "bg-orange-400 Nom"
-                          : wordInfo.morph["Case"] === "Acc"
-                          ? "bg-red-400 Acc"
-                          : wordInfo.morph["Case"] === "Dat"
-                          ? "bg-green-400 dat"
-                          : "")
-                      }
-                    `}
+                        ${
+                          (wordInfo.morph["Case"] as string | undefined) &&
+                          (wordInfo.morph["Case"] as string).length > 0 &&
+                          (wordInfo.morph["Case"] === "Nom"
+                            ? "bg-orange-400 Nom"
+                            : wordInfo.morph["Case"] === "Acc"
+                            ? "bg-red-400 Acc"
+                            : wordInfo.morph["Case"] === "Dat"
+                            ? "bg-green-400 dat"
+                            : wordInfo.morph["Case"] === "Gen"
+                            ? "bg-blue-400 Gen"
+                            : "")
+                        }
+                      `}
                     />
                   </span>
                 )
