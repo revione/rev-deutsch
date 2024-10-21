@@ -27,6 +27,7 @@ export default function GrammaticalAnalysis() {
 
     socket.addEventListener("open", () => {
       setServerStatus("connected");
+      analyzeGrammar(germanPhrase);
     });
 
     socket.addEventListener("message", (event) => {
